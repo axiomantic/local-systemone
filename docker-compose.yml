@@ -1,0 +1,18 @@
+services:
+  laya:
+    build: .
+    image: laya-service:latest
+    environment:
+      LAYA_PRELOAD: "1"
+      LAYA_DEVICE: cpu
+      # Empty = all three checkpoints resident. Set "english" to cut memory.
+      LAYA_PRELOAD_MODELS: ""
+      HF_HOME: /app/.cache/huggingface
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    volumes:
+      - laya-hf-cache:/app/.cache/huggingface
+
+volumes:
+  laya-hf-cache:
