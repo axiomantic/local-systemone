@@ -1,0 +1,19 @@
+[Unit]
+Description=Local System One Decision Service
+Documentation=https://github.com/axiomantic/local-systemone
+After=network.target
+
+[Service]
+Type=simple
+User=nobody
+Group=nogroup
+ExecStart=/usr/local/bin/local-systemone --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=3
+Environment=SYSTEMONE_PRELOAD=1
+Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

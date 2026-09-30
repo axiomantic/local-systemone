@@ -1,0 +1,17 @@
+[Unit]
+Description=Laya System One Decision Service
+Documentation=https://github.com/axiomantic/laya-service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/laya-service --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=3
+Environment=LAYA_PRELOAD=1
+Environment="PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin"
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target
