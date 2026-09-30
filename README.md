@@ -22,12 +22,22 @@ Unlike generative LLMs that predict tokens autoregressively, a **System 1 model*
 
 ## Installation
 
+Install directly from GitHub via `pip` or `uv`:
+
 ```bash
 # Core service + Laya neural engine + MCP tools:
-pip install "local-systemone[full]"
+pip install "git+https://github.com/axiomantic/local-systemone.git#egg=local-systemone[full]"
+
+# Or using uv:
+uv pip install "git+https://github.com/axiomantic/local-systemone.git#egg=local-systemone[full]"
 
 # Or wiring only (Ollama/Proxy/OpenAI backends, zero torch dependency):
-pip install "local-systemone[server]"
+pip install "git+https://github.com/axiomantic/local-systemone.git#egg=local-systemone[server]"
+
+# Or from a local clone:
+git clone https://github.com/axiomantic/local-systemone.git
+cd local-systemone
+pip install -e ".[full]"
 ```
 
 ---
@@ -37,12 +47,12 @@ pip install "local-systemone[server]"
 ### Foreground
 
 ```bash
-# Default (Laya engine on Apple Silicon / CUDA / CPU):
+# Default (Laya engine on Apple Silicon / CUDA / CPU, port 8100):
 local-systemone
 
 # Or run with a specific engine:
 local-systemone --engine ollama
-local-systemone --engine openai --port 8000
+local-systemone --engine openai --port 8100
 ```
 
 Verify reachability:
