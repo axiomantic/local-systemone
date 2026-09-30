@@ -344,7 +344,7 @@ name = "exceptiongroup"
 version = "1.3.1"
 source = { registry = "http://proxpi.flanopticon.lan/index/" }
 dependencies = [
-    { name = "typing-extensions", marker = "python_full_version < '3.13'" },
+    { name = "typing-extensions", marker = "python_full_version < '3.11'" },
 ]
 sdist = { url = "http://proxpi.flanopticon.lan/index/exceptiongroup/exceptiongroup-1.3.1.tar.gz", hash = "sha256:8b412432c6055b0b7d14c310000ae93352ed6754f70fa8f7c34141f91c4e3219" }
 wheels = [
@@ -605,7 +605,7 @@ wheels = [
 
 [[package]]
 name = "local-systemone"
-version = "0.2.0"
+version = "0.2.1"
 source = { editable = "." }
 dependencies = [
     { name = "httpx" },
@@ -644,8 +644,8 @@ requires-dist = [
     { name = "httpx", marker = "extra == 'dev'", specifier = ">=0.27" },
     { name = "httpx", marker = "extra == 'full'", specifier = ">=0.27" },
     { name = "httpx", marker = "extra == 'mcp'", specifier = ">=0.27" },
-    { name = "laya", marker = "extra == 'full'", specifier = ">=0.3.5" },
-    { name = "laya", marker = "extra == 'laya'", specifier = ">=0.3.5" },
+    { name = "laya", marker = "extra == 'full'", specifier = "==0.3.22" },
+    { name = "laya", marker = "extra == 'laya'", specifier = "==0.3.22" },
     { name = "mcp", marker = "extra == 'full'", specifier = ">=1.0,<2" },
     { name = "mcp", marker = "extra == 'mcp'", specifier = ">=1.0,<2" },
     { name = "pydantic", specifier = ">=2.0" },

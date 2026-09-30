@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2026-09-30
+
+### Fixed
+- **Laya 0.3.7+ Compatibility**:
+  - Relaxed `usage` schema dictionary typing in `SystemOneResponse` from `Dict[str, int]` to `Dict[str, Any]`. In Laya 0.3.7+ (`0.3.22`), `predict()` includes list/boolean fields (e.g. `truncated_questions: []`, `truncated: False`) which previously triggered FastAPI `ResponseValidationError` returning HTTP 500.
+  - Pinned `laya==0.3.22` in `pyproject.toml` optional dependencies for reproducible installs across platforms.
+
 ## [0.2.0] - 2026-09-30
 
 ### Added

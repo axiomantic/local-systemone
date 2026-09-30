@@ -79,7 +79,7 @@ def build_backend(engine: Optional[str] = None) -> Backend:
 
 def create_app(backend: Optional[Backend] = None, engine: Optional[str] = None) -> FastAPI:
     if backend is not None:
-        app = FastAPI(title="Local System One", version="0.2.0")
+        app = FastAPI(title="Local System One", version="0.2.1")
         app.state.backend = backend
     else:
         @asynccontextmanager
@@ -87,7 +87,7 @@ def create_app(backend: Optional[Backend] = None, engine: Optional[str] = None) 
             app.state.backend = build_backend(engine=engine)
             yield
 
-        app = FastAPI(title="Local System One", version="0.2.0", lifespan=lifespan)
+        app = FastAPI(title="Local System One", version="0.2.1", lifespan=lifespan)
 
     def _backend(request: Request) -> Backend:
         return request.app.state.backend

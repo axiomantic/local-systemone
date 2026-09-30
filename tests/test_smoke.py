@@ -69,3 +69,29 @@ def test_missing_choice_criteria_is_400():
         json={"state": "x", "questions": {"bad": {"type": "choice", "instructions": "?"}}},
     )
     assert r.status_code == 400
+
+
+def test_response_with_laya_usage_schema():
+    class LayaMockBackend(MockBackend):
+        def predict(self, *args, **kwargs):
+            res = super().predict(*args, **kwargs)
+            res["usage"] = {
+                "input_tokens": 21,
+                "output_tokens": 0,
+                "state_tokens": 1,
+                "state_tokens_dropped": 0,
+                "truncated": False,
+                "truncated_questions": [],
+            }
+            return res
+
+    app = create_app(backend=LayaMockBackend())
+    client = TestClient(app)
+    r = client.post(
+        "/v1/systemone",
+        json={"state": "ping", "questions": {"ok": {"type": "noul", "instructions": "ping?"}}},
+    )
+    assert r.status_code == 200, r.text
+    body = r.json()
+    assert body["usage"]["truncated"] is False
+    assert body["usage"]["truncated_questions"] == []

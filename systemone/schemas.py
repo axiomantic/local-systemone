@@ -39,7 +39,7 @@ class SystemOneRequest(BaseModel):
 class SystemOneResponse(BaseModel):
     model: str
     answers: Dict[str, Any]
-    usage: Dict[str, int]
+    usage: Dict[str, Any]
     routing: Optional[Dict[str, Any]] = None
 
 
