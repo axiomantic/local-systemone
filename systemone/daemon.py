@@ -62,7 +62,7 @@ def _env() -> Dict[str, str]:
     return env
 
 
-def build_plist(host: str = "127.0.0.1", port: int = 8000, engine: Optional[str] = None) -> dict:
+def build_plist(host: str = "127.0.0.1", port: int = 8100, engine: Optional[str] = None) -> dict:
     log_dir = _launchd_log_dir()
     work_dir = Path(__file__).resolve().parent.parent
 
@@ -91,7 +91,7 @@ def build_plist(host: str = "127.0.0.1", port: int = 8000, engine: Optional[str]
     }
 
 
-def install_launchd(host: str = "127.0.0.1", port: int = 8000, engine: Optional[str] = None) -> None:
+def install_launchd(host: str = "127.0.0.1", port: int = 8100, engine: Optional[str] = None) -> None:
     if sys.platform != "darwin":
         raise SystemExit("launchd LaunchAgent support is macOS-only. Use systemd on Linux.")
     _launchd_log_dir().mkdir(parents=True, exist_ok=True)
@@ -145,7 +145,7 @@ def systemd_user_unit_path() -> Path:
     return Path.home() / ".config" / "systemd" / "user" / SYSTEMD_SERVICE_NAME
 
 
-def build_systemd_unit(host: str = "127.0.0.1", port: int = 8000, engine: Optional[str] = None, user_mode: bool = True) -> str:
+def build_systemd_unit(host: str = "127.0.0.1", port: int = 8100, engine: Optional[str] = None, user_mode: bool = True) -> str:
     work_dir = Path(__file__).resolve().parent.parent
     env_lines = [
         "Environment=SYSTEMONE_PRELOAD=1",
@@ -195,7 +195,7 @@ WantedBy={target_target}
 """
 
 
-def install_systemd(host: str = "127.0.0.1", port: int = 8000, engine: Optional[str] = None) -> None:
+def install_systemd(host: str = "127.0.0.1", port: int = 8100, engine: Optional[str] = None) -> None:
     if sys.platform == "darwin":
         raise SystemExit("systemd is not available on macOS. Use launchd instead.")
     if not shutil.which("systemctl"):
@@ -239,7 +239,7 @@ def status_systemd() -> bool:
 
 # --- Unified cross-platform dispatchers ---
 
-def install_daemon(host: str = "127.0.0.1", port: int = 8000, engine: Optional[str] = None) -> None:
+def install_daemon(host: str = "127.0.0.1", port: int = 8100, engine: Optional[str] = None) -> None:
     if sys.platform == "darwin":
         install_launchd(host, port, engine=engine)
     elif sys.platform.startswith("linux"):

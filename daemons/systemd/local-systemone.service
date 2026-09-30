@@ -7,7 +7,7 @@ After=network.target
 Type=simple
 User=nobody
 Group=nogroup
-ExecStart=/usr/local/bin/local-systemone --host 127.0.0.1 --port 8000
+ExecStart=/usr/local/bin/local-systemone --host 127.0.0.1 --port 8100
 Restart=always
 RestartSec=3
 Environment=SYSTEMONE_PRELOAD=1

@@ -61,8 +61,8 @@ def build_backend(engine: Optional[str] = None) -> Backend:
             device = os.environ.get("LAYA_DEVICE") or None
             preload = os.environ.get("SYSTEMONE_PRELOAD", os.environ.get("LAYA_PRELOAD", "1")).strip().lower() not in ("0", "false", "no")
             auto_task_detection = os.environ.get("LAYA_AUTO_TASK_DETECTION", "").strip().lower() in ("1", "true", "yes")
-            raw_models = os.environ.get("LAYA_PRELOAD_MODELS", "")
-            preload_models = [m for m in raw_models.split(",") if m.strip()] or None
+            raw_models = os.environ.get("LAYA_PRELOAD_MODELS", "english")
+            preload_models = [m for m in raw_models.split(",") if m.strip()] or ["english"]
             return LayaBackend(
                 device=device,
                 preload=preload,
@@ -145,7 +145,7 @@ def main() -> None:
         description="Run the Local System One decision service (foreground) or manage its background daemon.",
     )
     parser.add_argument("--host", default=os.environ.get("SYSTEMONE_HOST", os.environ.get("LAYA_HOST", "127.0.0.1")))
-    parser.add_argument("--port", type=int, default=int(os.environ.get("SYSTEMONE_PORT", os.environ.get("LAYA_PORT", "8000"))))
+    parser.add_argument("--port", type=int, default=int(os.environ.get("SYSTEMONE_PORT", os.environ.get("LAYA_PORT", "8100"))))
     parser.add_argument("--engine", choices=["laya", "ollama", "openai", "proxy", "mock", "auto"],
                         default=os.environ.get("SYSTEMONE_ENGINE", "auto"),
                         help="decision engine backend (laya, ollama, openai, proxy, mock)")

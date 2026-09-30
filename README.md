@@ -47,7 +47,7 @@ local-systemone --engine openai --port 8000
 
 Verify reachability:
 ```bash
-curl http://127.0.0.1:8000/healthz
+curl http://127.0.0.1:8100/healthz
 # {"status":"ok","engine":"laya","mock":false,"loaded_models":["multilingual","typed-decisions","english"],"device":"mps"}
 ```
 
@@ -106,7 +106,7 @@ In your project with [Rhizo](https://github.com/axiomantic/rhizo):
 1. Set your service URL in `.env.local` (or `rhizo-routes.yaml`):
 ```bash
 # .env.local
-RHIZO_SERVICE_URL="http://127.0.0.1:8000"
+RHIZO_SERVICE_URL="http://127.0.0.1:8100"
 ```
 
 2. Validate service connectivity:
